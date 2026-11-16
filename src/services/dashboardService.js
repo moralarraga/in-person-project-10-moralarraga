@@ -1,3 +1,4 @@
+import { cachedFetch } from '../utils/asyncPatterns';
 /**
  * TODO: Implement a service that coordinates multiple API calls
  *
