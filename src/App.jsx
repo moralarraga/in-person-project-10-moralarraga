@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar';
 import StatusBar from './components/StatusBar';
 import { fetchWithRetry } from './utils/asyncPatterns';
 import { fetchDashboardData } from './services/dashboardService';
+import { usePolling } from './hooks/usePolling';
 
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
     fetchAllData(city);
   }, [city]);
 
+
+  usePolling(() => fetchAllData(city), 30000);
+
   const handleRefresh = () => {
     fetchAllData(city);
   };
@@ -55,6 +59,7 @@ function App() {
   const isAnyLoading = Object.values(loading).some(l => l);
 
   return (
+    
     <div className="container">
       <header className="header">
         <h1>Weather Dashboard</h1>
